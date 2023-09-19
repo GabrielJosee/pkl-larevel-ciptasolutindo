@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate
-MySQL - 10.4.25-MariaDB : Database - pkl_laravel
+SQLyog Community v13.2.0 (64 bit)
+MySQL - 10.4.27-MariaDB : Database - pkl_laravel
 *********************************************************************
 */
 
@@ -12,9 +12,70 @@ MySQL - 10.4.25-MariaDB : Database - pkl_laravel
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`pkl_laravel` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`pkl_laravel` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 
 USE `pkl_laravel`;
+
+/*Table structure for table `activity` */
+
+DROP TABLE IF EXISTS `activity`;
+
+CREATE TABLE `activity` (
+  `activity_id` int(10) NOT NULL AUTO_INCREMENT,
+  `timetable_id` int(10) DEFAULT NULL,
+  `activity_name` varchar(250) DEFAULT '',
+  `activity_start` time DEFAULT NULL,
+  `activity_end` time DEFAULT NULL,
+  `description_act` varchar(250) DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`activity_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `activity` */
+
+insert  into `activity`(`activity_id`,`timetable_id`,`activity_name`,`activity_start`,`activity_end`,`description_act`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(2,17,'Jump Shot','15:05:00','15:35:00','meningkatkan skill shoot',0,0,'2023-08-25 09:19:49',0,'2023-08-26 03:28:01',0,NULL,'2023-08-25 16:19:49'),
+(4,17,'Lay-up shoot','15:38:00','16:15:00','Meningkatkan skill shoot',0,0,'2023-08-26 04:41:29',0,'2023-08-26 04:41:29',0,NULL,'2023-08-26 11:41:29');
+
+/*Table structure for table `attendance` */
+
+DROP TABLE IF EXISTS `attendance`;
+
+CREATE TABLE `attendance` (
+  `attendance_id` int(10) NOT NULL AUTO_INCREMENT,
+  `timetable_id` int(10) DEFAULT NULL,
+  `id_player` int(10) DEFAULT NULL,
+  `attendance_datetime` datetime DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`attendance_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `attendance` */
+
+insert  into `attendance`(`attendance_id`,`timetable_id`,`id_player`,`attendance_datetime`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(10,11,29,'2023-08-05 11:27:00',0,0,'2023-08-05 04:27:35',0,'2023-08-05 04:27:35',0,NULL,'2023-08-05 11:27:35'),
+(12,7,27,'2023-08-09 14:21:00',0,0,'2023-08-09 07:21:42',0,'2023-08-09 07:21:42',0,NULL,'2023-08-09 14:21:42'),
+(14,7,20,'2023-08-09 20:53:00',0,0,'2023-08-09 14:01:22',0,'2023-08-09 14:01:22',0,NULL,'2023-08-09 21:01:22'),
+(15,16,39,'2023-08-21 13:43:00',0,0,'2023-08-21 06:43:04',0,'2023-08-21 06:43:04',0,NULL,'2023-08-21 13:43:04'),
+(16,16,39,'2023-08-21 13:43:00',0,0,'2023-08-21 06:43:04',0,'2023-08-21 06:43:04',0,NULL,'2023-08-21 13:43:04'),
+(17,16,40,'2023-08-21 15:17:00',0,0,'2023-08-21 08:17:44',0,'2023-08-21 08:17:44',0,NULL,'2023-08-21 15:17:44'),
+(18,16,26,'2023-08-21 16:05:00',0,0,'2023-08-21 09:05:10',0,'2023-08-21 09:05:10',0,NULL,'2023-08-21 16:05:10'),
+(19,17,40,'2023-08-22 10:28:00',0,0,'2023-08-22 03:28:42',0,'2023-08-22 03:28:42',0,NULL,'2023-08-22 10:28:42'),
+(20,17,39,'2023-08-22 10:32:00',0,0,'2023-08-22 03:32:06',0,'2023-08-22 03:32:06',0,NULL,'2023-08-22 10:32:06');
 
 /*Table structure for table `ci_sessions` */
 
@@ -26,7 +87,7 @@ CREATE TABLE `ci_sessions` (
   `timestamp` int(10) unsigned NOT NULL DEFAULT 0,
   `data` blob NOT NULL,
   KEY `ci_sessions_timestamp` (`timestamp`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `ci_sessions` */
 
@@ -264,7 +325,7 @@ CREATE TABLE `core_banner` (
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`),
   KEY `section_token` (`banner_redirect_link`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `core_banner` */
 
@@ -290,7 +351,7 @@ CREATE TABLE `core_city` (
   KEY `city_id` (`city_id`),
   KEY `FK_core_city_province_id` (`province_id`),
   CONSTRAINT `FK_core_city_province_id` FOREIGN KEY (`province_id`) REFERENCES `core_province` (`province_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1449 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1449 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `core_city` */
 
@@ -815,12 +876,12 @@ DROP TABLE IF EXISTS `core_kecamatan`;
 
 CREATE TABLE `core_kecamatan` (
   `kecamatan_id` int(10) NOT NULL AUTO_INCREMENT,
-  `city_code` char(4) CHARACTER SET utf8 NOT NULL,
+  `city_code` char(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `city_id` int(10) DEFAULT 0,
-  `kecamatan_code` char(7) CHARACTER SET utf8 NOT NULL,
-  `kecamatan_name` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `city_no` varchar(20) COLLATE utf8_unicode_ci DEFAULT '',
-  `kecamatan_no` varchar(20) COLLATE utf8_unicode_ci DEFAULT '',
+  `kecamatan_code` char(7) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `kecamatan_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `city_no` varchar(20) DEFAULT '',
+  `kecamatan_no` varchar(20) DEFAULT '',
   `data_state` int(1) DEFAULT 0,
   PRIMARY KEY (`kecamatan_id`),
   KEY `districts_regency_id_index` (`city_code`),
@@ -7918,7 +7979,7 @@ CREATE TABLE `core_kelurahan` (
   KEY `FK_core_kelurahan_kecamatan_id` (`kecamatan_id`),
   KEY `kelurahan_name` (`kelurahan_name`),
   CONSTRAINT `FK_core_kelurahan_kecamatan_id` FOREIGN KEY (`kecamatan_id`) REFERENCES `core_kecamatan` (`kecamatan_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=365464 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=365464 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `core_kelurahan` */
 
@@ -90046,7 +90107,7 @@ CREATE TABLE `core_payment` (
   PRIMARY KEY (`payment_id`),
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `core_payment` */
 
@@ -90072,7 +90133,7 @@ CREATE TABLE `core_province` (
   `data_state` int(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`province_id`),
   KEY `province_id` (`province_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `core_province` */
 
@@ -90118,17 +90179,96 @@ DROP TABLE IF EXISTS `failed_jobs`;
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `failed_jobs` */
+
+/*Table structure for table `health_assessment` */
+
+DROP TABLE IF EXISTS `health_assessment`;
+
+CREATE TABLE `health_assessment` (
+  `health_assessment_id` int(10) NOT NULL AUTO_INCREMENT,
+  `health_assessment_schedule_id` int(10) DEFAULT NULL,
+  `health_assessment_categories_id` int(10) DEFAULT NULL,
+  `mark_health` varchar(255) DEFAULT NULL,
+  `id_player` int(10) DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`health_assessment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `health_assessment` */
+
+insert  into `health_assessment`(`health_assessment_id`,`health_assessment_schedule_id`,`health_assessment_categories_id`,`mark_health`,`id_player`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(4,2,1,'78',26,0,0,'2023-08-28 09:29:33',0,'2023-08-29 08:52:10',0,NULL,'2023-08-28 16:29:33'),
+(7,2,1,'100',40,0,0,'2023-08-29 08:55:01',0,'2023-08-29 08:55:01',0,NULL,'2023-08-29 15:55:01'),
+(8,3,1,'80',39,0,0,'2023-09-01 07:45:15',0,'2023-09-01 07:45:15',0,NULL,'2023-09-01 14:45:15');
+
+/*Table structure for table `health_assessment_categories` */
+
+DROP TABLE IF EXISTS `health_assessment_categories`;
+
+CREATE TABLE `health_assessment_categories` (
+  `health_assessment_categories_id` int(10) NOT NULL AUTO_INCREMENT,
+  `kode_assessment` varchar(250) DEFAULT NULL,
+  `name_assessment` varchar(250) DEFAULT NULL,
+  `information_assessment` varchar(250) DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`health_assessment_categories_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `health_assessment_categories` */
+
+insert  into `health_assessment_categories`(`health_assessment_categories_id`,`kode_assessment`,`name_assessment`,`information_assessment`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(1,'K-21','Ronsen','Cek up Kesehatan Organ Dalam',0,0,'2023-08-25 08:48:40',0,'2023-08-25 09:03:36',0,NULL,'2023-08-25 15:48:40');
+
+/*Table structure for table `health_assessment_schedule` */
+
+DROP TABLE IF EXISTS `health_assessment_schedule`;
+
+CREATE TABLE `health_assessment_schedule` (
+  `health_assessment_schedule_id` int(10) NOT NULL AUTO_INCREMENT,
+  `month_period` varchar(250) DEFAULT NULL,
+  `year_period` varchar(250) DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`health_assessment_schedule_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `health_assessment_schedule` */
+
+insert  into `health_assessment_schedule`(`health_assessment_schedule_id`,`month_period`,`year_period`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(1,'11','4',1,0,'2023-08-28 03:36:37',0,'2023-08-28 04:13:42',0,NULL,'2023-08-28 10:36:37'),
+(2,'3','4',0,0,'2023-08-28 04:14:43',0,'2023-08-28 04:17:54',0,NULL,'2023-08-28 11:14:43'),
+(3,'6','4',0,0,'2023-09-01 07:44:57',0,'2023-09-01 07:44:57',0,NULL,'2023-09-01 14:44:57');
 
 /*Table structure for table `invt_item` */
 
@@ -90163,7 +90303,7 @@ CREATE TABLE `invt_item` (
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`),
   KEY `section_token` (`item_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `invt_item` */
 
@@ -90193,7 +90333,7 @@ CREATE TABLE `invt_item_category` (
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`),
   KEY `section_token` (`item_category_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `invt_item_category` */
 
@@ -90224,7 +90364,7 @@ CREATE TABLE `invt_item_review` (
   PRIMARY KEY (`item_review_id`),
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `invt_item_review` */
 
@@ -90258,7 +90398,7 @@ CREATE TABLE `invt_item_variant` (
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`),
   KEY `section_token` (`item_variant_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `invt_item_variant` */
 
@@ -90270,13 +90410,54 @@ insert  into `invt_item_variant`(`item_variant_id`,`item_id`,`item_variant_name`
 (5,4,'Mendem','Sambil kesurupan',45,0,2500000,'','',0,0,0,NULL,0,NULL,0,NULL,'2022-11-14 11:20:18'),
 (6,4,'Full Set','Mendem + Atraksi makan beling api dll',90,0,5000000,'','',0,0,0,NULL,0,NULL,0,NULL,'2022-11-14 11:20:22');
 
+/*Table structure for table `jadwal_latihan` */
+
+DROP TABLE IF EXISTS `jadwal_latihan`;
+
+CREATE TABLE `jadwal_latihan` (
+  `timetable_id` int(10) NOT NULL AUTO_INCREMENT,
+  `name_training` varchar(250) DEFAULT '',
+  `training_ground_id` int(10) DEFAULT NULL,
+  `training_day` varchar(250) DEFAULT NULL,
+  `start_time` time DEFAULT NULL,
+  `end_time` time DEFAULT NULL,
+  `description` varchar(250) DEFAULT NULL,
+  `id_team` int(10) DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`timetable_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `jadwal_latihan` */
+
+insert  into `jadwal_latihan`(`timetable_id`,`name_training`,`training_ground_id`,`training_day`,`start_time`,`end_time`,`description`,`id_team`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(1,'Sritex',2,'Senin','14:00:00','18:00:00','TIM TERBAIK SOLO',15,1,0,'2023-07-12 09:15:03',0,'2023-08-02 06:43:15',0,NULL,'2023-07-12 16:15:03'),
+(5,'Lay Up',1,'Selasa','10:00:00','13:00:00','Tim Keren',13,1,0,'2023-07-27 09:22:27',0,'2023-08-02 06:43:14',0,NULL,'2023-07-27 16:22:27'),
+(6,'Sritex',2,'3','10:35:00','13:39:00','Tim Keren',13,1,0,'2023-07-28 03:36:12',0,'2023-08-02 07:10:59',0,NULL,'2023-07-28 10:36:12'),
+(7,'Shooting',1,'3','14:10:00','16:12:00','Latihan Bro',13,1,0,'2023-08-02 07:10:56',0,'2023-08-16 06:35:12',0,NULL,'2023-08-02 14:10:56'),
+(8,'Rebound',1,'4','13:20:00','23:50:00','Latihan Jangan Lupa!',13,1,0,'2023-08-02 07:47:06',0,'2023-08-16 06:35:11',0,NULL,'2023-08-02 14:47:06'),
+(9,'Jump Smash',2,'3','19:25:00','20:35:00','Latihan',13,1,0,'2023-08-02 08:22:02',0,'2023-08-02 08:22:30',0,NULL,'2023-08-02 15:22:02'),
+(10,'Passing',1,'4','11:08:00','15:12:00','Latihan Inti',15,1,0,'2023-08-03 04:08:35',0,'2023-08-03 04:08:44',0,NULL,'2023-08-03 11:08:35'),
+(11,'Smash',2,'6','10:37:00','13:37:00','Well',16,1,0,'2023-08-05 03:37:37',0,'2023-08-10 06:32:20',0,NULL,'2023-08-05 10:37:37'),
+(12,'Air Ball',1,'2','10:25:00','12:25:00','WAJIB LATIHAN',16,1,0,'2023-08-08 03:25:42',0,'2023-08-16 06:35:10',0,NULL,'2023-08-08 10:25:42'),
+(13,'Jump Smash',1,'3','13:41:00','15:56:00','TIM LATIHAN',22,1,0,'2023-08-16 06:41:19',0,'2023-08-16 08:30:22',0,NULL,'2023-08-16 13:41:19'),
+(16,'Jump Smash',1,'1','13:35:00','16:35:00','TIM',75,0,0,'2023-08-21 06:36:00',0,'2023-08-21 06:36:00',0,NULL,'2023-08-21 13:36:00'),
+(17,'Shooting',1,'2','10:14:00','14:00:00','TIM',75,0,0,'2023-08-22 03:14:34',0,'2023-08-22 06:49:12',0,NULL,'2023-08-22 10:14:34'),
+(18,'Passing',1,'4','14:03:00','14:05:00','JGN LUPA!',75,0,0,'2023-08-24 07:04:12',0,'2023-08-24 07:04:12',0,NULL,'2023-08-24 14:04:12');
+
 /*Table structure for table `migrations` */
 
 DROP TABLE IF EXISTS `migrations`;
 
 CREATE TABLE `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -90301,8 +90482,8 @@ CREATE TABLE `p_p_o_b_s` (
 DROP TABLE IF EXISTS `password_resets`;
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -90315,11 +90496,11 @@ DROP TABLE IF EXISTS `personal_access_tokens`;
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) unsigned NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -90329,6 +90510,49 @@ CREATE TABLE `personal_access_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `personal_access_tokens` */
+
+/*Table structure for table `player` */
+
+DROP TABLE IF EXISTS `player`;
+
+CREATE TABLE `player` (
+  `id_player` int(10) NOT NULL AUTO_INCREMENT,
+  `player_name` varchar(250) DEFAULT '',
+  `birth_place` varchar(250) DEFAULT NULL,
+  `date_birth` date DEFAULT NULL,
+  `player_address` varchar(250) DEFAULT NULL,
+  `player_image` varchar(250) DEFAULT NULL,
+  `player_gender` int(1) DEFAULT 0,
+  `player_position` int(1) DEFAULT 0,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_player`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `player` */
+
+insert  into `player`(`id_player`,`player_name`,`birth_place`,`date_birth`,`player_address`,`player_image`,`player_gender`,`player_position`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(20,'thomso','Paris','1985-10-17','Prapatan Prancis','1689136229.jpg',1,3,1,0,'2023-07-11 07:54:16',0,'2023-08-16 06:33:00',0,NULL,'2023-07-11 14:54:16'),
+(26,'Rony Gunawan','Samarinda','1980-08-20','Surabaya','1689143587.jpg',1,4,0,0,'2023-07-12 06:33:07',0,'2023-07-12 06:33:07',0,NULL,'2023-07-12 13:33:07'),
+(27,'Speed','us','2023-06-27','random','1689144201.jpg',1,4,1,0,'2023-07-12 06:43:21',0,'2023-08-16 06:33:02',0,NULL,'2023-07-12 13:43:21'),
+(29,'Bagong','jawa','2023-07-18','random','1689144411.jpg',1,5,1,0,'2023-07-12 06:46:51',0,'2023-08-16 06:33:04',0,NULL,'2023-07-12 13:46:51'),
+(30,'Dani','Sukoharjo','2023-07-12','Wonogiri','1689152039.jpg',2,2,1,0,'2023-07-12 08:53:59',0,'2023-08-16 06:33:06',0,NULL,'2023-07-12 15:53:59'),
+(31,'Naufal','Mentawai','2023-08-01','Joho','1690878434.jpg',1,3,1,0,'2023-08-01 08:27:14',0,'2023-08-16 06:33:07',0,NULL,'2023-08-01 15:27:14'),
+(32,'Naufal','Mentawai','2023-08-01','Joho','1690878473.jpg',1,3,1,0,'2023-08-01 08:27:53',0,'2023-08-01 08:32:57',0,NULL,'2023-08-01 15:27:53'),
+(33,'Naufal','Mentawai','2023-08-01','Joho','1690878649.jpg',1,3,1,0,'2023-08-01 08:30:49',0,'2023-08-01 08:32:55',0,NULL,'2023-08-01 15:30:49'),
+(34,'Naufal','Mentawai','2023-08-01','Joho','1690878671.jpg',1,3,1,0,'2023-08-01 08:31:11',0,'2023-08-01 08:32:50',0,NULL,'2023-08-01 15:31:11'),
+(35,'Pager','Nampu','2023-08-01','Wonogiri','1690878843.jpg',1,3,1,0,'2023-08-01 08:34:03',0,'2023-08-16 06:33:08',0,NULL,'2023-08-01 15:34:03'),
+(36,'Scorpio','Sukoharjo','2023-08-01','Ngasinan','1690878958.jpg',1,5,1,0,'2023-08-01 08:35:58',0,'2023-08-16 06:32:58',0,NULL,'2023-08-01 15:35:58'),
+(37,'Demian','Jakarta','1979-12-14','Bogor','',1,4,1,0,'2023-08-01 08:47:39',0,'2023-08-16 04:55:47',0,NULL,'2023-08-01 15:47:39'),
+(38,'Kyy','Solo','2023-08-01','Wonogiri','',1,2,1,0,'2023-08-01 09:04:57',0,'2023-08-11 08:32:05',0,NULL,'2023-08-01 16:04:57'),
+(39,'Brandon Sutedja','Jakarta','1995-12-25','Nganjuk','1692167687.jpg',1,3,0,0,'2023-08-16 06:34:47',0,'2023-08-16 06:34:47',0,NULL,'2023-08-16 13:34:47'),
+(40,'Damian','Sukoharjo','2023-08-21','Bogor','1692605830.jpg',1,5,0,0,'2023-08-21 08:17:10',0,'2023-08-21 08:17:10',0,NULL,'2023-08-21 15:17:10');
 
 /*Table structure for table `preference_company` */
 
@@ -90346,7 +90570,7 @@ CREATE TABLE `preference_company` (
   `company_footer` text DEFAULT NULL,
   `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`company_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `preference_company` */
 
@@ -90378,7 +90602,7 @@ CREATE TABLE `sales` (
   PRIMARY KEY (`sales_id`),
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `sales` */
 
@@ -90409,7 +90633,7 @@ CREATE TABLE `sales_item` (
   PRIMARY KEY (`sales_item_id`),
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `sales_item` */
 
@@ -90437,7 +90661,7 @@ CREATE TABLE `sales_payment` (
   PRIMARY KEY (`sales_payment_id`),
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `sales_payment` */
 
@@ -90467,12 +90691,45 @@ CREATE TABLE `sales_schedule` (
   PRIMARY KEY (`sales_schedule_id`),
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `sales_schedule` */
 
 insert  into `sales_schedule`(`sales_schedule_id`,`seller_id`,`sales_id`,`sales_item_id`,`sales_schedule_start_date`,`sales_schedule_end_date`,`sales_schedule_status`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
 (1,1,1,1,'2022-11-17 10:07:45','2022-11-17 14:07:49',0,0,0,'2022-11-17 10:08:12',0,NULL,0,NULL,'2022-11-17 10:07:56');
+
+/*Table structure for table `slide_show` */
+
+DROP TABLE IF EXISTS `slide_show`;
+
+CREATE TABLE `slide_show` (
+  `slide_id` int(10) NOT NULL AUTO_INCREMENT,
+  `pitcure` varchar(250) DEFAULT NULL,
+  `description` varchar(250) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`slide_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `slide_show` */
+
+insert  into `slide_show`(`slide_id`,`pitcure`,`description`,`start_date`,`end_date`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(1,'1691742897.jpg','Foto Lama','2023-08-11','2023-08-13',0,0,'2023-08-11 08:13:38',0,'2023-08-11 08:34:57',0,NULL,'2023-08-11 15:13:38'),
+(2,'1691742839.jpg','Foto Baru','2023-08-11','2023-08-18',1,0,'2023-08-11 08:33:59',0,'2023-08-11 08:38:33',0,NULL,'2023-08-11 15:33:59'),
+(3,'1691815418.mp4','Video baru','2023-08-12','2023-08-15',1,0,'2023-08-12 04:43:38',0,'2023-08-12 05:17:26',0,NULL,'2023-08-12 11:43:38'),
+(4,'1691817443.mp4','Video baru','2023-08-12','2023-08-17',1,0,'2023-08-12 05:17:23',0,'2023-08-16 06:28:33',0,NULL,'2023-08-12 12:17:23'),
+(5,'1691817701.mp4','Video Panjang','2023-08-03','2023-08-13',0,0,'2023-08-12 05:21:41',0,'2023-08-12 05:21:41',0,NULL,'2023-08-12 12:21:41'),
+(6,'1692161465.jpg','Foto Nitro','2023-08-16','2023-08-18',1,0,'2023-08-16 04:51:05',0,'2023-08-16 06:28:32',0,NULL,'2023-08-16 11:51:05'),
+(7,'1692167336.jpg','Basket','2023-08-16','2023-09-30',0,0,'2023-08-16 06:28:56',0,'2023-08-16 06:28:56',0,NULL,'2023-08-16 13:28:56'),
+(8,'1692167551.jpg','Tim Basket','2023-08-16','2023-09-30',0,0,'2023-08-16 06:32:31',0,'2023-08-16 06:32:31',0,NULL,'2023-08-16 13:32:31');
 
 /*Table structure for table `system_activity_log` */
 
@@ -90492,7 +90749,7 @@ CREATE TABLE `system_activity_log` (
   KEY `transaction_id` (`transaction_id`),
   KEY `transaction_code` (`transaction_code`),
   KEY `transaction_date` (`transaction_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `system_activity_log` */
 
@@ -90508,7 +90765,7 @@ CREATE TABLE `system_change_log` (
   `new_data` mediumtext DEFAULT NULL,
   `log_time` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`change_log_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `system_change_log` */
 
@@ -90530,7 +90787,7 @@ CREATE TABLE `system_log_user` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`user_log_id`),
   KEY `FK_system_log_user` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2487 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2487 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `system_log_user` */
 
@@ -90552,7 +90809,7 @@ CREATE TABLE `system_menu` (
   `image` varchar(50) DEFAULT NULL,
   `last_update` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id_menu`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `system_menu` */
 
@@ -90561,17 +90818,20 @@ insert  into `system_menu`(`id_menu`,`id`,`type`,`indent_level`,`text`,`image`,`
 ('1','#','folder',1,'System',NULL,'2021-12-18 10:37:18'),
 ('11','system-user','file',2,'User',NULL,'2022-11-12 10:07:04'),
 ('12','system-user-group','file',2,'User Group',NULL,'2022-11-12 10:07:08'),
-('13','seller-request','file',2,'Persetujuan Seller',NULL,'2022-11-12 10:08:04'),
-('2','#','folder',1,'Konfigurasi',NULL,'2022-11-11 15:48:50'),
-('21','item-category','file',2,'Kategori',NULL,'2022-11-11 16:52:44'),
-('22','banner','file',2,'Banner',NULL,'2022-11-17 13:14:43'),
-('3','#','folder',1,'Toko',NULL,'2022-11-14 10:15:45'),
-('31','item','file',2,'Item',NULL,'2022-11-19 11:32:11'),
-('32','item-review','file',2,'Item Review',NULL,'2022-11-19 11:32:42'),
-('33','sales','file',2,'Penjualan',NULL,'2022-11-19 11:32:19'),
-('34','sales-payment','file',2,'Pembayaran',NULL,'2022-11-19 11:32:18'),
-('35','sales-schedule','file',2,'Jadwal Pembayaran',NULL,'2022-11-23 10:36:46'),
-('355','tes','file',3,'tes',NULL,'2022-11-22 16:52:09');
+('13','slideshow','file',2,'Slide Show',NULL,'2023-08-28 13:02:59'),
+('2','#','folder',1,'Club',NULL,'2023-07-28 14:06:58'),
+('22','player','file',2,'Player',NULL,'2023-07-07 11:09:24'),
+('23','timbasket','file',2,'Tim Basket',NULL,'2022-11-17 13:14:43'),
+('3','#','folder',1,'Training',NULL,'2023-07-28 14:07:12'),
+('31','training','file',2,'Tempat Latihan',NULL,'2023-07-28 14:04:07'),
+('32','jadwal','file',2,'Jadwal Latihan',NULL,'2023-07-28 14:04:31'),
+('33','kategorikesehatan','file',2,'Kategori Penilaian Kesehatan',NULL,'2023-08-25 15:33:57'),
+('34','jadwalkesehatan','file',2,'Jadwal Penilaian Kesehatan',NULL,'2023-08-25 16:25:06'),
+('35','kegiatan','file',2,'Kegiatan Jadwal Latihan',NULL,'2023-08-28 11:32:33'),
+('36','penilaiankesehatan','file',2,'Penilaian Kesehatan',NULL,'2023-08-29 14:34:36'),
+('4','#','folder',1,'Attendance',NULL,'2023-07-28 14:36:43'),
+('51','absensi','file',2,'Absensi',NULL,'2023-08-24 13:21:55'),
+('52','laporan-absensi-hadir','file',2,'Laporan Absensi',NULL,'2023-08-07 14:10:06');
 
 /*Table structure for table `system_menu_mapping` */
 
@@ -90580,13 +90840,13 @@ DROP TABLE IF EXISTS `system_menu_mapping`;
 CREATE TABLE `system_menu_mapping` (
   `menu_mapping_id` int(10) NOT NULL AUTO_INCREMENT,
   `user_group_level` int(3) DEFAULT NULL,
-  `id_menu` varchar(10) CHARACTER SET latin1 DEFAULT NULL,
+  `id_menu` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`menu_mapping_id`),
   KEY `FK_system_menu_mapping` (`id_menu`) USING BTREE,
   CONSTRAINT `FK_system_menu_mapping_id_menu` FOREIGN KEY (`id_menu`) REFERENCES `system_menu` (`id_menu`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `system_menu_mapping` */
 
@@ -90595,18 +90855,23 @@ insert  into `system_menu_mapping`(`menu_mapping_id`,`user_group_level`,`id_menu
 (40,1,'11','2022-01-07 04:16:59','2022-01-07 04:16:59'),
 (41,1,'12','2022-01-07 04:16:59','2022-01-07 04:16:59'),
 (42,1,'2','2022-01-07 04:16:59','2022-01-07 04:16:59'),
-(44,1,'21','2022-01-07 04:16:59','2022-01-07 04:16:59'),
+(45,1,'23','2022-01-07 04:16:59','2022-01-07 04:16:59'),
 (137,2,'0','2022-11-12 02:43:37','2022-11-12 02:43:37'),
 (138,3,'0','2022-11-12 02:43:58','2022-11-12 02:43:58'),
-(139,1,'13','2022-11-12 10:22:29','2022-11-12 10:22:25'),
 (140,1,'3','2022-11-14 11:43:53','2022-11-14 10:16:40'),
 (141,1,'31','2022-11-14 11:43:55','2022-11-14 10:16:41'),
-(142,1,'33','2022-11-14 11:43:56','2022-11-14 11:43:51'),
-(143,1,'35','2022-11-14 11:43:58','2022-11-14 11:43:52'),
 (144,1,'22','2022-11-17 16:43:00','2022-11-17 13:14:49'),
-(145,1,'34','2022-11-17 16:43:01','2022-11-17 16:42:20'),
 (146,1,'32',NULL,'2022-11-19 11:33:00'),
-(147,1,'355',NULL,'2022-11-22 16:52:17');
+(147,1,'4','2023-07-29 11:24:31','2023-07-28 14:37:00'),
+(150,1,'51','2023-08-01 07:18:49','2023-08-01 07:18:49'),
+(151,1,'52',NULL,'2023-08-07 14:10:26'),
+(152,4,'32','2023-08-08 03:26:54','2023-08-08 03:26:54'),
+(153,4,'51','2023-08-08 03:26:54','2023-08-08 03:26:54'),
+(154,1,'13','2023-08-11 15:57:34','2023-08-11 15:57:37'),
+(155,1,'33','2023-08-25 16:25:20','2023-08-25 15:34:13'),
+(156,1,'34','2023-08-25 16:25:22','2023-08-25 16:25:24'),
+(157,1,'35','2023-08-28 11:32:46','2023-08-28 11:32:48'),
+(158,1,'36','2023-08-29 14:34:48','2023-08-29 14:34:47');
 
 /*Table structure for table `system_user` */
 
@@ -90615,16 +90880,17 @@ DROP TABLE IF EXISTS `system_user`;
 CREATE TABLE `system_user` (
   `user_id` int(10) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(3) DEFAULT NULL,
+  `id_player` int(10) DEFAULT 0,
   `seller_status` int(1) DEFAULT 0 COMMENT '0 = request, 1 = disetujui, 2 = ditolak',
   `user_status` int(1) DEFAULT 0 COMMENT '0 = aktif, 1 = diblokir',
-  `full_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
-  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `full_name` varchar(255) DEFAULT '',
+  `name` varchar(255) DEFAULT '',
+  `phone_number` varchar(255) DEFAULT '',
   `branch_id` int(1) DEFAULT 0,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `blokir_id` int(10) DEFAULT NULL,
   `blokir_at` datetime DEFAULT NULL,
   `updated_id` int(10) DEFAULT NULL,
@@ -90635,16 +90901,25 @@ CREATE TABLE `system_user` (
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `fk_system_user_user_group_id` (`user_group_id`),
   CONSTRAINT `fk_system_user_user_group_id` FOREIGN KEY (`user_group_id`) REFERENCES `system_user_group` (`user_group_id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `system_user` */
 
-insert  into `system_user`(`user_id`,`user_group_id`,`seller_status`,`user_status`,`full_name`,`name`,`phone_number`,`branch_id`,`email`,`email_verified_at`,`password`,`remember_token`,`blokir_id`,`blokir_at`,`updated_id`,`data_state`,`created_at`,`updated_at`) values 
-(55,1,0,0,'Administrator','administrator','08812792729',0,'administrator@gmail.com',NULL,'$2y$10$iZDkHP5nuPa19XrmkjdET.2myCKSER1CMtEWJeQvVNk/j6gxVMSh6',NULL,NULL,NULL,NULL,0,'2021-10-26 03:03:14','2022-11-11 08:47:50'),
-(72,2,1,0,'Seller','Seller','08819919',0,NULL,NULL,'$2y$10$8nmqA1ApHLWB3c867hF5wusuuGPj6/eE81QpOq.u0SQHeqA3h1S/y',NULL,55,'2022-11-17 07:57:48',55,0,'2022-11-12 03:03:45','2022-11-17 07:57:48'),
-(73,3,0,0,'Buyer','Buyer','08881',0,NULL,NULL,'$2y$10$aU8YBFILd34QxRI5vUxU8.9KIbRTARliwiJVNSUawTpXzbdBWzwWu',NULL,NULL,NULL,NULL,0,'2022-11-12 04:43:00','2022-11-12 04:43:00'),
-(78,2,0,0,'Demo Akun','demoakun','08234665273',0,'demoakun@gmail.com',NULL,'$2y$10$uGYnTN/pY0mw6TNfcSqwuemPHzUIA/ZIbS4vknLHOu5m/gdqRhcaG',NULL,NULL,NULL,NULL,0,'2022-11-22 11:57:29','2022-11-22 11:57:29'),
-(79,1,0,0,'testes','tes','0887127',0,NULL,NULL,'$2y$10$xsSudfF3tjD9BsyBbaDRV.VVHFATqSgccRMOX/uP8MApcfy1aLUEK',NULL,NULL,NULL,NULL,0,'2022-12-19 02:48:13','2022-12-19 02:48:13');
+insert  into `system_user`(`user_id`,`user_group_id`,`id_player`,`seller_status`,`user_status`,`full_name`,`name`,`phone_number`,`branch_id`,`email`,`email_verified_at`,`password`,`remember_token`,`blokir_id`,`blokir_at`,`updated_id`,`data_state`,`created_at`,`updated_at`) values 
+(55,1,0,0,0,'Administrator','administrator','08812792729',0,'administrator@gmail.com',NULL,'$2y$10$iZDkHP5nuPa19XrmkjdET.2myCKSER1CMtEWJeQvVNk/j6gxVMSh6',NULL,NULL,NULL,NULL,0,'2021-10-26 03:03:14','2022-11-11 08:47:50'),
+(72,2,0,1,0,'Seller','Seller','08819919',0,NULL,NULL,'$2y$10$8nmqA1ApHLWB3c867hF5wusuuGPj6/eE81QpOq.u0SQHeqA3h1S/y',NULL,55,'2022-11-17 07:57:48',55,0,'2022-11-12 03:03:45','2022-11-17 07:57:48'),
+(73,3,0,0,0,'Buyer','Buyer','08881',0,NULL,NULL,'$2y$10$aU8YBFILd34QxRI5vUxU8.9KIbRTARliwiJVNSUawTpXzbdBWzwWu',NULL,NULL,NULL,NULL,0,'2022-11-12 04:43:00','2022-11-12 04:43:00'),
+(78,2,0,0,0,'Demo Akun','demoakun','08234665273',0,'demoakun@gmail.com',NULL,'$2y$10$uGYnTN/pY0mw6TNfcSqwuemPHzUIA/ZIbS4vknLHOu5m/gdqRhcaG',NULL,NULL,NULL,NULL,0,'2022-11-22 11:57:29','2022-11-22 11:57:29'),
+(79,1,0,0,0,'testes','tes','0887127',0,NULL,NULL,'$2y$10$xsSudfF3tjD9BsyBbaDRV.VVHFATqSgccRMOX/uP8MApcfy1aLUEK',NULL,NULL,NULL,NULL,0,'2022-12-19 02:48:13','2022-12-19 02:48:13'),
+(83,4,20,0,0,'thomso','thomso','',0,NULL,NULL,'$2y$10$/KSCgNWAVmBzaidc7xder.dTO7vCcZhrFO0Q076glIWg/jBE5ToNG',NULL,NULL,NULL,NULL,0,'2023-07-11 07:54:17','2023-07-12 04:30:29'),
+(89,4,26,0,0,'Rony Gunawan','Rony Gunawan','',0,NULL,NULL,'$2y$10$cXDRT3tvQKDilNotODbycOnaD9xFY.gm1t6xVtYaEtSd2iKHMJQBm',NULL,NULL,NULL,NULL,0,'2023-07-12 06:33:07','2023-07-12 06:33:07'),
+(90,4,27,0,0,'Speed','Speed','',0,NULL,NULL,'$2y$10$vy0U0lV4/43lDVKPJGerBuVqI/hVVt8htK8o7aioDybbHRp1qd9pa',NULL,NULL,NULL,NULL,0,'2023-07-12 06:43:21','2023-07-12 06:43:21'),
+(92,4,29,0,0,'Bagong','Bagong','',0,NULL,NULL,'$2y$10$81WAouBaKaRUgdjOqd0/8utq1gNvhEAXcg1N0M2xZLS6UwkJIO5HS',NULL,NULL,NULL,NULL,0,'2023-07-12 06:46:51','2023-07-12 06:46:51'),
+(93,4,30,0,0,'Dani','Dani','',0,NULL,NULL,'$2y$10$58hoUJKEqUER09QoI7hp5urVevfjrjzSMX/KKcs8gMdHL3yGoTjRe',NULL,NULL,NULL,NULL,0,'2023-07-12 08:53:59','2023-07-12 08:53:59'),
+(97,4,31,0,0,'Naufal','Naufal','',0,NULL,NULL,'$2y$10$D09O2ycc5kECAJ364QxhE.0vr7EOJbHAvawlagt4Rh9LTYvf9eKtG',NULL,NULL,NULL,NULL,0,'2023-08-01 08:30:49','2023-08-01 08:30:49'),
+(98,4,38,0,0,'Kyy','Kyy','',0,NULL,NULL,'$2y$10$bfbQ/aGEDS9G0rbxKlnnre5A.zJrGsVzwlemCHBa4S6wp3HAZPxuq',NULL,NULL,NULL,NULL,0,'2023-08-01 09:04:57','2023-08-01 09:04:57'),
+(99,4,39,0,0,'Brandon Sutedja','Brandon Sutedja','',0,NULL,NULL,'$2y$10$OhAaRKpsO/38n4PUcb/kDug6vxgG7AuttydgqarQ28f99ZHlpy9yu',NULL,NULL,NULL,NULL,0,'2023-08-16 06:34:47','2023-08-16 06:34:47'),
+(100,4,40,0,0,'Damian','Damian','',0,NULL,NULL,'$2y$10$05UbQOPkA0ugDFT9wKp.0uunXBcW4ucALiqW6FQZ/sOHHgOIU92ya',NULL,NULL,NULL,NULL,0,'2023-08-21 08:17:10','2023-08-21 08:17:10');
 
 /*Table structure for table `system_user_buyer` */
 
@@ -90671,7 +90946,7 @@ CREATE TABLE `system_user_buyer` (
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`),
   KEY `section_token` (`buyer_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `system_user_buyer` */
 
@@ -90700,14 +90975,15 @@ CREATE TABLE `system_user_group` (
   KEY `user_group_token` (`user_group_token`),
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `system_user_group` */
 
 insert  into `system_user_group`(`user_group_id`,`user_group_level`,`user_group_name`,`user_group_token`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_on`,`deleted_id`,`deleted_on`,`updated_at`) values 
 (1,1,'Administrator','',0,0,NULL,0,NULL,0,NULL,'2021-10-26 10:02:23'),
 (2,2,'Seller','',0,0,'2022-11-12 02:43:25',0,NULL,0,NULL,'2022-11-12 09:43:48'),
-(3,3,'Buyer','',0,0,'2022-11-12 02:43:58',0,NULL,0,NULL,'2022-11-12 09:44:03');
+(3,3,'Buyer','',0,0,'2022-11-12 02:43:58',0,NULL,0,NULL,'2022-11-12 09:44:03'),
+(4,4,'Player','',0,0,'2023-07-08 02:52:40',0,NULL,0,NULL,'2023-07-08 02:52:40');
 
 /*Table structure for table `system_user_seller` */
 
@@ -90738,12 +91014,99 @@ CREATE TABLE `system_user_seller` (
   KEY `data_state` (`data_state`),
   KEY `created_id` (`created_id`),
   KEY `section_token` (`seller_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 /*Data for the table `system_user_seller` */
 
 insert  into `system_user_seller`(`seller_id`,`user_id`,`seller_name`,`seller_identity_no`,`seller_age`,`seller_gender`,`seller_address`,`seller_phone_number`,`seller_social_media`,`seller_photo`,`seller_store_name`,`seller_store_address`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
 (1,72,'S3ller','11000001',17,1,'Jl Raya','08881','TikiToko','','Toko S3ll3r','Jl Ray Toko',0,0,NULL,0,NULL,0,NULL,'2022-11-12 10:06:03');
+
+/*Table structure for table `tim_basket` */
+
+DROP TABLE IF EXISTS `tim_basket`;
+
+CREATE TABLE `tim_basket` (
+  `id_team` int(10) NOT NULL AUTO_INCREMENT,
+  `team_name` varchar(250) DEFAULT '',
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_team`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `tim_basket` */
+
+insert  into `tim_basket`(`id_team`,`team_name`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(72,'Frontale',0,0,'2023-08-16 03:47:21',0,'2023-08-16 03:47:21',0,NULL,'2023-08-16 10:47:21'),
+(73,'marinos',0,0,'2023-08-16 03:53:50',0,'2023-08-16 03:53:50',0,NULL,'2023-08-16 10:53:50'),
+(74,'Verdy',0,0,'2023-08-16 03:54:56',0,'2023-08-16 03:54:56',0,NULL,'2023-08-16 10:54:56'),
+(75,'CV. Cipta',0,0,'2023-08-21 06:35:19',0,'2023-08-21 06:35:19',0,NULL,'2023-08-21 13:35:19'),
+(76,'Livix',0,0,'2023-08-21 08:17:24',0,'2023-08-21 08:17:24',0,NULL,'2023-08-21 15:17:24');
+
+/*Table structure for table `tim_basket_play` */
+
+DROP TABLE IF EXISTS `tim_basket_play`;
+
+CREATE TABLE `tim_basket_play` (
+  `id_team_play` int(10) NOT NULL AUTO_INCREMENT,
+  `id_team` int(10) DEFAULT NULL,
+  `id_player` int(10) DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id_team_play`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `tim_basket_play` */
+
+insert  into `tim_basket_play`(`id_team_play`,`id_team`,`id_player`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(1,72,20,0,0,'2023-08-16 03:52:22',0,'2023-08-16 03:52:22',0,NULL,'2023-08-16 10:52:22'),
+(2,72,26,0,0,'2023-08-16 03:52:22',0,'2023-08-16 03:52:22',0,NULL,'2023-08-16 10:52:22'),
+(3,73,27,0,0,'2023-08-16 03:53:50',0,'2023-08-16 03:53:50',0,NULL,'2023-08-16 10:53:50'),
+(4,73,32,0,0,'2023-08-16 03:53:50',0,'2023-08-16 03:53:50',0,NULL,'2023-08-16 10:53:50'),
+(5,74,35,0,0,'2023-08-16 03:54:56',0,'2023-08-16 03:54:56',0,NULL,'2023-08-16 10:54:56'),
+(6,75,39,0,0,'2023-08-21 06:35:19',0,'2023-08-21 06:35:19',0,NULL,'2023-08-21 13:35:19'),
+(7,75,26,0,0,'2023-08-21 06:35:19',0,'2023-08-21 06:35:19',0,NULL,'2023-08-21 13:35:19'),
+(8,76,40,0,0,'2023-08-21 08:17:24',0,'2023-08-21 08:17:24',0,NULL,'2023-08-21 15:17:24');
+
+/*Table structure for table `training_ground` */
+
+DROP TABLE IF EXISTS `training_ground`;
+
+CREATE TABLE `training_ground` (
+  `training_ground_id` int(10) NOT NULL AUTO_INCREMENT,
+  `training_ground_name` varchar(250) DEFAULT NULL,
+  `training_ground_address` varchar(250) DEFAULT NULL,
+  `contact_person` varchar(250) DEFAULT NULL,
+  `number_phone` varchar(250) DEFAULT NULL,
+  `open_hours` time DEFAULT NULL,
+  `close_hours` time DEFAULT NULL,
+  `data_state` int(1) DEFAULT 0,
+  `created_id` int(10) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_id` int(10) DEFAULT 0,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_id` int(10) DEFAULT 0,
+  `deleted_at` datetime DEFAULT NULL,
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`training_ground_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+/*Data for the table `training_ground` */
+
+insert  into `training_ground`(`training_ground_id`,`training_ground_name`,`training_ground_address`,`contact_person`,`number_phone`,`open_hours`,`close_hours`,`data_state`,`created_id`,`created_at`,`updated_id`,`updated_at`,`deleted_id`,`deleted_at`,`last_update`) values 
+(1,'Kebakan','JL. CEMPAKA NO.89','0864646732','0814636876','09:00:00','20:30:00',0,0,'2023-07-06 06:17:28',0,'2023-07-06 07:33:55',0,NULL,'2023-07-06 13:17:28'),
+(2,'ksatria','JL. soedirman NO.89','0868934','08123345','08:20:00','20:55:00',1,0,'2023-07-06 08:04:48',0,'2023-07-06 08:04:58',0,NULL,'2023-07-06 15:04:48');
 
 /* Trigger structure for table `sales` */
 
